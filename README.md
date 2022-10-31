@@ -32,8 +32,76 @@ The main focus of this project, therefore, will be on the collection of a suitab
 | Final Written Report                      | 10h  |      |
 | Final Presentation                        | 5h   |      |
 
+## Installation
+This project was created and tested with python version 3.7. In order to install it, first clone this repository with the following command:
+```
+git clone --recurse-submodules https://github.com/pratax/edm-melody-generator.git
+```
+then, create and activate a new python virtual environment by using:
+```
+python -m venv edm-melody-generator
+```
+and finally, to install all the required packages, run the following command:
+```
+pip install -r requirements.txt
+```
+
+## Usage
+### Train 
+In order to train MelodyRNN on this custom edm dataset, first we need to convert the MIDI files to NoteSequences. In order to do so, from the main directory of this project, run the following command:
+```
+python magenta/magenta/scripts/convert_dir_to_note_sequences.py --input_dir="Dataset" --output_file="tmp/notesequences.tfrecord" --recursive 
+```
+where:
+ - ```--input_dir``` specifies the relative or absolute path to the folder containing the MIDI files
+ - ```--output_file``` specifies the file to be created and written with the NoteSequences
+
+then, to create a dataset of SequenceExamples to feed the model for training, from the main directory of this project, run this command:
+```
+python magenta/magenta/models/melody_rnn/melody_rnn_create_dataset.py --config=lookback_rnn --input="tmp/notesequences.tfrecord" --output_dir="tmp/melody_rnn/sequence_examples" --eval_ratio=0.00 
+```
+where:
+ - ```--config``` specifies the type of model to train between: basic_rnn, mono_rnn, lookback_rnn and attention_rnn
+ - ```--input``` specifies the path to the NoteSequences file generated earlier 
+ - ```--output_dir``` specifies the directory where the training ready dataset will be stored
+ - ```--eval_ratio``` specifies the ratio of evaluation sequences to be created (e.g. 0.1 will assign 10% of the melodies to the evaluation set)
+
+now we are ready to train our model. To do so, from the main directory run this command:
+```
+python magenta/magenta/models/melody_rnn/melody_rnn_train.py --config=lookback_rnn --run_dir="tmp/melody_rnn/logdir/run1" --sequence_example_file="tmp/melody_rnn/sequence_examples/training_melodies.tfrecord" --hparams="batch_size=64,rnn_layer_sizes=[64,64]" --num_training_steps=20000 
+```
+where:
+ - ```--config``` specifies the type of model to train between: basic_rnn, mono_rnn, lookback_rnn and attention_rnn
+ - ```--run_dir``` specifies the path where to store training logs and checkpoints 
+ - ```--sequence_example_file``` specifies the path to the training ready dataset created in the previous step
+ - ```--hparams``` specifies the hyperparameters of the model
+ - ```--num_training_steps``` specifies the number of training steps to perform before ending the training phase
+
+once training is over, it is possible to check the information about loss and metrics during training by running the following command:
+```
+tensorboard --logdir=tmp/melody_rnn/logdir
+```
+and then going to the following link in a browser:
+```
+http://localhost:6006/
+```
+
+### Test
+Once training is done, it is possible to test the model by generating a certain amount of melodies. To generate melodies run the following command:
+```
+python magenta/magenta/models/melody_rnn/melody_rnn_generate.py --config=lookback_rnn --run_dir="tmp/melody_rnn/logdir/run1" --output_dir="tmp/melody_rnn/generated" --num_outputs=10 --num_steps=128 --hparams="batch_size=64,rnn_layer_sizes=[64,64]" --primer_melody="[60]"
+```
+where:
+ - ```--config``` specifies the type of model to train between: basic_rnn, mono_rnn, lookback_rnn and attention_rnn
+ - ```--run_dir``` specifies the directory where the trained model was saved
+ - ```--output_dir``` specifies the directory where to store the generated MIDI melodies
+ - ```--num_outputs``` specifies the number of melodies that will be generated
+ - ```--num_steps``` specifies how long each melody will be in 16th steps (128 steps = 8 bars)
+ - ```--hparams``` specifies the hyperparameters of the model
+ - ```--primer_melody``` specifies the starting note of the generated melodies (60 represents the note C4 and increasing/decreasing by 1 increases/decreases the starting note by 1 semitone, e.g. 62 corresponds to the note D4)
+ 
 ## References
-For the initial tpic research the following references have been used:
+For the initial topic research the following references have been used:
 
 [POP909 Dataset](https://arxiv.org/abs/2008.07142)
 ```
