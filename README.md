@@ -21,13 +21,45 @@ For genres like classical and pop music, big datasets already exist and an examp
 
 The main focus of this project, therefore, will be on the collection of a suitable dataset to be able to train a deep learning model on EDM melody generation. The dataset will contain monophonic melodies (not more than one note played at the same time) created by EDM artists (e.g. Avicii, Kygo, ...) saved in MIDI format (.mid), which is the standard format when it comes to storing musical information on electronic devices. In particular, MIDI does not store any audio information or any information about the sound being reproduced but rather it stores the pitch, start time, stop time and other properties of each individual note being played and is used as a musical data format by many deep learning frameworks.
 
+## Dataset Collection
+For this project, mainly three sources of training data generation have been used:
+* Generating my melodies from scratch
+* Using existing MIDI files 
+* Recreating famous melodies from scratch
+
+After an initial assessment, it emerged that recreating famous melodies from scratch would take about 15m per melody, so I expected to create about 160 training samples in 40h of work. To augment the dataset, I added sample melodies from some of the songs that I created myself. Additionally, to speed up the process and collect even more data, I used existing MIDI files from the internet. The existing MIDI files had to be cleaned up and processed but they turned out to be a more efficient way of creating data which helped me collect more than 200 samples in 25h, almost 2x faster than the original expectation. Finally, it is worth noting that all the melodies in the dataset are monophonic (not more than one note playing at the same time), they are named according to the convention "Artist - Title.mid", they are all labeled with original Beats Per Minute (BPM) and Key, and all notes are set to a velocity value of 80.  
+
+## Metrics and Training
+To evaluate this project, two metrics have been used:
+* Accuracy 
+* Perplexity
+
+After running the first training, the goal for accuracy was set to any value above 0.9 and the goal for perplexity was set to any value below 1.3.
+
+So far, five training runs have been performed. All the details are shown in the table below:
+| Run &nbsp; | Steps &nbsp; | Training Time &nbsp; | Batch Size &nbsp; | Learning Rate &nbsp; | Model Size | Accuracy &nbsp;| Perplexity &nbsp;|
+|---|--------|-------|----|-------|-----|--------|-------|
+| 1 | 20.000 | 1h24m | 64 | 10e-3 | 64  | 0.9034 | 1.329 |
+| 2 | 20.000 | 1h25m | 32 | 10e-3 | 64  | 0.9055 | 1.313 |
+| 3 | 20.000 | 1h24m | 32 | 10e-4 | 128 | 0.8254 | 1.729 |
+| 4 | 20.000 | 1h26m | 32 | 10e-3 | 128 | 0.9862 | 1.045 |
+| 5 | 20.000 | 1h27m | 64 | 10e-3 | 128 | 0.9918 | 1.044 |
+
+As we can see from the table above, a higher learning rate is to be preferred to a lower one since it yields higher accuracy values and lower perplexity scores. As for the model size, having a bigger model size is preferred since it yields better results, but if we do not have enough computing power it is necessary to reduce the size of our model. Regarding batch size, considering the same learning rate and model size, a bigger batch size yields slightly better results. The fifth run is the one that performed best both in terms of accuracy and perplexity and the figures below (adapted from TensorBoard) show the curves of the two metrics against the training step:
+
+
+![figure](accuracy.png)
+![figure](perplexity.png)
+
+As a final consideration, it is worth noting that all of the runs have been performed for 20.000 global steps, and changing the hyperparameters such as model size didn't affect the training time that remained pretty much constant within all five runs.
+
 ## Work-Breakdown structure
 | Individual Task &nbsp; | Time Estimated &nbsp; | Time Used |
 |-------------------------------------------|------|------|
 | Research Topic                            | 5h   |  8h  |
-| Dataset Collection                        | 40h  |      |
-| Network Building                          | 5h   |      |
-| Network Training                          | 20h  |      |
+| Dataset Collection                        | 40h  |  25h |
+| Network Building                          | 5h   |  5h  |
+| Network Training                          | 20h  |  8h  |
 | Application Development                   | 15h  |      |
 | Final Written Report                      | 10h  |      |
 | Final Presentation                        | 5h   |      |
