@@ -121,7 +121,7 @@ http://localhost:6006/
 ### Test
 Once training is done, it is possible to test the model by generating a certain amount of melodies. To generate melodies run the following command:
 ```
-python magenta/magenta/models/melody_rnn/melody_rnn_generate.py --config=lookback_rnn --run_dir="tmp/melody_rnn/logdir/run1" --output_dir="tmp/melody_rnn/generated" --num_outputs=10 --num_steps=128 --hparams="batch_size=64,rnn_layer_sizes=[64,64]" --primer_melody="[60]"
+python magenta/magenta/models/melody_rnn/melody_rnn_generate.py --config=lookback_rnn --run_dir="tmp/melody_rnn/logdir/run5" --output_dir="tmp/melody_rnn/generated" --num_outputs=10 --num_steps=128 --hparams="batch_size=64,rnn_layer_sizes=[128,128]" --primer_melody="[60]"
 ```
 where:
  - ```--config``` specifies the type of model to train between: basic_rnn, mono_rnn, lookback_rnn and attention_rnn
