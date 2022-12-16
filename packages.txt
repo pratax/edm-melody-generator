@@ -1,8 +1,2 @@
 libsndfile-dev
-libasound2-dev
-libasound2-plugins
-alsa-utils
-libasound2-doc
-libgirepository1.0-dev
-libglib2.0-doc
-libgdk-pixbuf2.0-bin
+libasound-dev
