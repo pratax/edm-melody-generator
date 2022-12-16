@@ -248,9 +248,6 @@ if __name__ == '__main__':
   import pretty_midi
   from scipy.io import wavfile
   import pygame
-  import os
-
-  os.environ['SDL_AUDIODRIVER'] = 'dsp'
 
   def play_music(midi_filename):
       '''Stream music_file in a blocking manner'''
@@ -298,7 +295,7 @@ if __name__ == '__main__':
       bitsize = -16  # unsigned 16 bit
       channels = 2  # 1 is mono, 2 is stereo
       buffer = 1024  # number of samples
-      pygame.mixer.init(freq, bitsize, channels, buffer)
+      pygame.mixer.init()
 
       # optional volume 0 to 1.0
       #pygame.mixer.music.set_volume(0.8)
