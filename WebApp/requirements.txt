@@ -54,7 +54,7 @@ Markdown==3.4.1
 MarkupSafe==2.1.1
 matplotlib==3.5.1
 matplotlib-inline==0.1.6
-mido==1.2.10
+mido==1.2.6
 ninja==1.10.2.3
 note-seq==0.0.3
 numba==0.49.1
