@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="fb935668-e65d-47ec-8875-2cedb24fff88" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/WebApp/packages.txt" beforeDir="false" afterPath="$PROJECT_DIR$/WebApp/packages.txt" afterDir="false" />
-    </list>
+    <list default="true" id="fb935668-e65d-47ec-8875-2cedb24fff88" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
