@@ -298,13 +298,13 @@ if __name__ == '__main__':
       bitsize = -16  # unsigned 16 bit
       channels = 2  # 1 is mono, 2 is stereo
       buffer = 1024  # number of samples
-      #pygame.mixer.init(freq, bitsize, channels, buffer)
+      pygame.mixer.init(freq, bitsize, channels, buffer)
 
       # optional volume 0 to 1.0
       #pygame.mixer.music.set_volume(0.8)
 
 
-      def plot_piano_roll(pm, start_pitch, end_pitch, fs=100):
+      '''def plot_piano_roll(pm, start_pitch, end_pitch, fs=100):
           # Use librosa's specshow function for displaying the piano roll
           librosa.display.specshow(pm.get_piano_roll(fs)[start_pitch:end_pitch],
                                    hop_length=1, sr=fs, x_axis='time', y_axis='cqt_note',
@@ -315,8 +315,9 @@ if __name__ == '__main__':
       import librosa.display
       pianoroll = plt.figure(figsize=(8, 4))
       plot_piano_roll(pretty_midi.PrettyMIDI(midi_file), 55, 80)
-      st.pyplot(pianoroll)
+      st.pyplot(pianoroll)'''
 
-      #with st.spinner(f"Playing the generated melody..."):
-          #play_music(midi_file)
+      with st.spinner(f"Playing the generated melody..."):
+          #st.audio(pretty_midi.PrettyMIDI(midi_file), 'audio/mid')
+          play_music(midi_file)
 
