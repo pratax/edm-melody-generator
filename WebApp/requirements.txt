@@ -58,7 +58,7 @@ mido==1.2.10
 ninja==1.10.2.3
 note-seq==0.0.3
 numba==0.56.4
-numpy==1.22.3
+numpy==1.21.6
 oauthlib==3.2.2
 opencv-python==4.5.5.64
 opt-einsum==3.3.0
