@@ -248,7 +248,9 @@ if __name__ == '__main__':
   import pretty_midi
   from scipy.io import wavfile
   import pygame
+  import os
 
+  os.environ['SDL_AUDIODRIVER'] = 'dsp'
 
   def play_music(midi_filename):
       '''Stream music_file in a blocking manner'''
