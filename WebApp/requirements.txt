@@ -96,7 +96,7 @@ resampy==0.4.2
 rich==12.6.0
 rsa==4.9
 scikit-learn==1.1.1
-scipy==1.8.0
+scipy==1.7.3
 semver==2.13.0
 six==1.16.0
 smmap==5.0.0
