@@ -298,10 +298,10 @@ if __name__ == '__main__':
       bitsize = -16  # unsigned 16 bit
       channels = 2  # 1 is mono, 2 is stereo
       buffer = 1024  # number of samples
-      pygame.mixer.init(freq, bitsize, channels, buffer)
+      #pygame.mixer.init(freq, bitsize, channels, buffer)
 
       # optional volume 0 to 1.0
-      pygame.mixer.music.set_volume(0.8)
+      #pygame.mixer.music.set_volume(0.8)
 
 
       def plot_piano_roll(pm, start_pitch, end_pitch, fs=100):
@@ -317,6 +317,6 @@ if __name__ == '__main__':
       plot_piano_roll(pretty_midi.PrettyMIDI(midi_file), 55, 80)
       st.pyplot(pianoroll)
 
-      with st.spinner(f"Playing the generated melody..."):
-          play_music(midi_file)
+      #with st.spinner(f"Playing the generated melody..."):
+          #play_music(midi_file)
 
