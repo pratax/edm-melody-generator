@@ -18,7 +18,7 @@ import os
 import time
 import sys
 
-sys.path.insert(0, "magenta")
+sys.path.insert(0, "../magenta")
 
 from magenta.models.melody_rnn import melody_rnn_config_flags
 from magenta.models.melody_rnn import melody_rnn_model
