@@ -1,2 +1,2 @@
 libsndfile-dev
-libasound-dev
+libasound2-dev
