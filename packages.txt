@@ -1,2 +1,4 @@
 libsndfile-dev
 libasound-dev
+alsa-utils
+avahi-utils
