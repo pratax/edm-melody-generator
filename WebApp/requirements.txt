@@ -79,7 +79,6 @@ pyasn1-modules==0.2.8
 pycparser==2.21
 pydeck==0.8.0
 pydub==0.25.1
-pyFluidSynth @ git+https://github.com/0xf0f/pyfluidsynth@bce65a56c1e893a40f3ab5e353b498c711b85e62
 pygame==2.1.2
 Pygments==2.13.0
 Pympler==1.0.1
@@ -126,6 +125,7 @@ validators==0.20.0
 watchdog==2.2.0
 wcwidth==0.2.5
 Werkzeug==2.2.2
+wheel==0.37.1
 wrapt==1.14.1
 xyzservices==2022.9.0
 zipp==3.11.0

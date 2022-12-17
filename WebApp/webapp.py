@@ -52,7 +52,7 @@ tf.app.flags.DEFINE_string(
     'A short, human-readable text description of the bundle (e.g., training '
     'data, hyper parameters, etc.).')
 tf.app.flags.DEFINE_string(
-    'output_dir', '../tmp/melody_rnn/generated',
+    'output_dir', '/tmp/melody_rnn/generated',
     'The directory where MIDI files will be saved to.')
 tf.app.flags.DEFINE_integer(
     'num_outputs', 1,
@@ -119,7 +119,7 @@ def get_bundle():
     Either a generator_pb2.GeneratorBundle or None if the bundle_file flag is
     not set or the save_generator_bundle flag is set.
   """
-  bundle_file = os.path.expanduser("run5.mag")
+  bundle_file = os.path.expanduser("/WebApp/run5.mag")
   return sequence_generator_bundle.read_bundle_file(bundle_file)
 
 
@@ -297,18 +297,18 @@ if __name__ == '__main__':
       buffer = 1024  # number of samples
       pygame.mixer.init()
 
-      def plot_piano_roll(pm, start_pitch, end_pitch, fs=100):
+      '''def plot_piano_roll(pm, start_pitch, end_pitch, fs=100):
           # Use librosa's specshow function for displaying the piano roll
           librosa.display.specshow(pm.get_piano_roll(fs)[start_pitch:end_pitch],
                                    hop_length=1, sr=fs, x_axis='time', y_axis='cqt_note',
-                                   fmin=pretty_midi.note_number_to_hz(start_pitch))
+                                   fmin=pretty_midi.note_number_to_hz(start_pitch))'''
 
 
-      import matplotlib.pyplot as plt
+      '''import matplotlib.pyplot as plt
       import librosa.display
       pianoroll = plt.figure(figsize=(8, 4))
       plot_piano_roll(pretty_midi.PrettyMIDI(midi_file), 55, 80)
-      st.pyplot(pianoroll)
+      st.pyplot(pianoroll)'''
 
       with st.spinner(f"Playing the generated melody..."):
           #st.audio(pretty_midi.PrettyMIDI(midi_file), 'audio/mid')
