@@ -295,7 +295,7 @@ if __name__ == '__main__':
       bitsize = -16  # unsigned 16 bit
       channels = 2  # 1 is mono, 2 is stereo
       buffer = 1024  # number of samples
-      pygame.mixer.init()
+      pygame.mixer.init(frequency=freq, size=bitsize, channels=channels, buffer=buffer)
 
       '''def plot_piano_roll(pm, start_pitch, end_pitch, fs=100):
           # Use librosa's specshow function for displaying the piano roll
