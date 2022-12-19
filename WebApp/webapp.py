@@ -294,6 +294,8 @@ if __name__ == '__main__':
           virtualfile = io.BytesIO()
           wavfile.write(virtualfile, 44100, audio_data)
 
+      st.balloons()
+
       st.write(':headphones: Click to play the generated melody: ')
       with st.spinner(':headphones: Playing the generated melody...'):
           st.audio(virtualfile)
