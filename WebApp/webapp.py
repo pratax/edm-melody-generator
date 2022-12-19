@@ -18,7 +18,7 @@ import os
 import time
 import sys
 
-sys.path.insert(0, "../magenta")
+sys.path.insert(0, "/magenta")
 
 from magenta.models.melody_rnn import melody_rnn_config_flags
 from magenta.models.melody_rnn import melody_rnn_model
@@ -52,7 +52,7 @@ tf.app.flags.DEFINE_string(
     'A short, human-readable text description of the bundle (e.g., training '
     'data, hyper parameters, etc.).')
 tf.app.flags.DEFINE_string(
-    'output_dir', '../tmp/melody_rnn/generated',
+    'output_dir', '/tmp/melody_rnn/generated',
     'The directory where MIDI files will be saved to.')
 tf.app.flags.DEFINE_integer(
     'num_outputs', 1,
@@ -119,7 +119,7 @@ def get_bundle():
     Either a generator_pb2.GeneratorBundle or None if the bundle_file flag is
     not set or the save_generator_bundle flag is set.
   """
-  bundle_file = os.path.expanduser("run5.mag")
+  bundle_file = os.path.expanduser("/WebApp/run5.mag")
   return sequence_generator_bundle.read_bundle_file(bundle_file)
 
 
@@ -248,6 +248,7 @@ if __name__ == '__main__':
   import pretty_midi
   from scipy.io import wavfile
   import pygame
+  import pyfluidsynth
 
   def play_music(midi_filename):
       '''Stream music_file in a blocking manner'''
@@ -290,12 +291,13 @@ if __name__ == '__main__':
 
       #st.button("generate", key=None, help=None, on_click=console_entry_point(), args=None, kwargs=None, type="secondary", disabled=False)
       midi_file = console_entry_point(primer_melody=key_to_primer[option], temperature=temperature, length=length, qpm=qpm, primer_midi=None)
+      midi_data = pretty_midi.PrettyMIDI(midi_file)
       # mixer config
-      freq = 44100  # audio CD quality
+      '''freq = 44100  # audio CD quality
       bitsize = -16  # unsigned 16 bit
       channels = 2  # 1 is mono, 2 is stereo
       buffer = 1024  # number of samples
-      pygame.mixer.init(frequency=freq, size=bitsize, channels=channels, buffer=buffer)
+      pygame.mixer.init(frequency=freq, size=bitsize, channels=channels, buffer=buffer)'''
 
       '''def plot_piano_roll(pm, start_pitch, end_pitch, fs=100):
           # Use librosa's specshow function for displaying the piano roll
@@ -310,7 +312,7 @@ if __name__ == '__main__':
       plot_piano_roll(pretty_midi.PrettyMIDI(midi_file), 55, 80)
       st.pyplot(pianoroll)'''
 
-      with st.spinner(f"Playing the generated melody..."):
+      #with st.spinner(f"Playing the generated melody..."):
           #st.audio(pretty_midi.PrettyMIDI(midi_file), 'audio/mid')
-          play_music(midi_file)
+          #play_music(midi_file)
 
