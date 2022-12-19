@@ -52,7 +52,7 @@ tf.app.flags.DEFINE_string(
     'A short, human-readable text description of the bundle (e.g., training '
     'data, hyper parameters, etc.).')
 tf.app.flags.DEFINE_string(
-    'output_dir', '/tmp/melody_rnn/generated',
+    'output_dir', 'tmp/melody_rnn/generated',
     'The directory where MIDI files will be saved to.')
 tf.app.flags.DEFINE_integer(
     'num_outputs', 1,
@@ -119,7 +119,7 @@ def get_bundle():
     Either a generator_pb2.GeneratorBundle or None if the bundle_file flag is
     not set or the save_generator_bundle flag is set.
   """
-  bundle_file = os.path.expanduser("/WebApp/run5.mag")
+  bundle_file = os.path.expanduser("run5.mag")
   return sequence_generator_bundle.read_bundle_file(bundle_file)
 
 
