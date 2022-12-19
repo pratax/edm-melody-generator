@@ -252,14 +252,6 @@ if __name__ == '__main__':
   import numpy as np
   import io
 
-  def play_music(midi_filename):
-      '''Stream music_file in a blocking manner'''
-      clock = pygame.time.Clock()
-      pygame.mixer.music.load(midi_filename)
-      pygame.mixer.music.play()
-      while pygame.mixer.music.get_busy():
-          clock.tick(30)  # check if playback has finished
-
   st.title('edm-melody-generator :notes: :dancer:')
   st.sidebar.title("Settings")
 
@@ -298,28 +290,20 @@ if __name__ == '__main__':
       audio_data = np.int16(audio_data / np.max(np.abs(audio_data)) * 32767 * 0.9)  # -- Normalize for 16 bit audio https://github.com/jkanner/streamlit-audio/blob/main/helper.py
       virtualfile = io.BytesIO()
       wavfile.write(virtualfile, 44100, audio_data)
-      # mixer config
-      '''freq = 44100  # audio CD quality
-      bitsize = -16  # unsigned 16 bit
-      channels = 2  # 1 is mono, 2 is stereo
-      buffer = 1024  # number of samples
-      pygame.mixer.init(frequency=freq, size=bitsize, channels=channels, buffer=buffer)'''
 
-      '''def plot_piano_roll(pm, start_pitch, end_pitch, fs=100):
+      def plot_piano_roll(pm, start_pitch, end_pitch, fs=100):
           # Use librosa's specshow function for displaying the piano roll
           librosa.display.specshow(pm.get_piano_roll(fs)[start_pitch:end_pitch],
                                    hop_length=1, sr=fs, x_axis='time', y_axis='cqt_note',
-                                   fmin=pretty_midi.note_number_to_hz(start_pitch))'''
+                                   fmin=pretty_midi.note_number_to_hz(start_pitch))
 
 
-      '''import matplotlib.pyplot as plt
+      import matplotlib.pyplot as plt
       import librosa.display
       pianoroll = plt.figure(figsize=(8, 4))
       plot_piano_roll(pretty_midi.PrettyMIDI(midi_file), 55, 80)
-      st.pyplot(pianoroll)'''
+      st.pyplot(pianoroll)
 
       with st.spinner(f"Playing the generated melody..."):
           st.audio(virtualfile)
-          #st.audio(pretty_midi.PrettyMIDI(midi_file), 'audio/mid')
-          #play_music(midi_file)
 
