@@ -284,14 +284,16 @@ if __name__ == '__main__':
   if st.button('Generate Melody'):
 
       #st.button("generate", key=None, help=None, on_click=console_entry_point(), args=None, kwargs=None, type="secondary", disabled=False)
-      midi_file = console_entry_point(primer_melody=key_to_primer[option], temperature=temperature, length=length, qpm=qpm, primer_midi=None)
-      midi_data = pretty_midi.PrettyMIDI(midi_file)
-      audio_data = midi_data.fluidsynth()
-      audio_data = np.int16(audio_data / np.max(np.abs(audio_data)) * 32767 * 0.9)  # -- Normalize for 16 bit audio https://github.com/jkanner/streamlit-audio/blob/main/helper.py
-      virtualfile = io.BytesIO()
-      wavfile.write(virtualfile, 44100, audio_data)
+      with st.spinner(':construction: Generating melody...'):
+        midi_file = console_entry_point(primer_melody=key_to_primer[option], temperature=temperature, length=length, qpm=qpm, primer_midi=None)
+      with st.spinner(':chains: Converting it to a WAV file...'):
+          midi_data = pretty_midi.PrettyMIDI(midi_file)
+          audio_data = midi_data.fluidsynth()
+          audio_data = np.int16(audio_data / np.max(np.abs(audio_data)) * 32767 * 0.9)  # -- Normalize for 16 bit audio https://github.com/jkanner/streamlit-audio/blob/main/helper.py
+          virtualfile = io.BytesIO()
+          wavfile.write(virtualfile, 44100, audio_data)
 
-      def plot_piano_roll(pm, start_pitch, end_pitch, fs=100):
+      '''def plot_piano_roll(pm, start_pitch, end_pitch, fs=100):
           # Use librosa's specshow function for displaying the piano roll
           librosa.display.specshow(pm.get_piano_roll(fs)[start_pitch:end_pitch],
                                    hop_length=1, sr=fs, x_axis='time', y_axis='cqt_note',
@@ -302,8 +304,8 @@ if __name__ == '__main__':
       import librosa.display
       pianoroll = plt.figure(figsize=(8, 4))
       plot_piano_roll(pretty_midi.PrettyMIDI(midi_file), 55, 80)
-      st.pyplot(pianoroll)
+      st.pyplot(pianoroll)'''
 
-      with st.spinner(f"Playing the generated melody..."):
+      with st.spinner(':headphones: Playing the generated melody...'):
           st.audio(virtualfile)
 
