@@ -252,7 +252,7 @@ if __name__ == '__main__':
   import numpy as np
   import io
 
-  st.title('edm-melody-generator :notes: :dancer:')
+  st.title('edm-melody-generator[link](https://github.com/pratax/edm-melody-generator) :notes: :dancer:')
   st.sidebar.title("Settings")
 
   st.write("Here's our first attempt at using data to create a table:")
