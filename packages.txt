@@ -2,4 +2,4 @@ libsndfile-dev
 libasound2-dev
 python-dev
 libjack-dev
-fluidsynth
+fluidsynth=1.1.11
