@@ -292,6 +292,10 @@ if __name__ == '__main__':
       #st.button("generate", key=None, help=None, on_click=console_entry_point(), args=None, kwargs=None, type="secondary", disabled=False)
       midi_file = console_entry_point(primer_melody=key_to_primer[option], temperature=temperature, length=length, qpm=qpm, primer_midi=None)
       midi_data = pretty_midi.PrettyMIDI(midi_file)
+      audio_data = midi_data.fluidsynth()
+      audio_data = np.int16(audio_data / np.max(np.abs(audio_data)) * 32767 * 0.9)  # -- Normalize for 16 bit audio https://github.com/jkanner/streamlit-audio/blob/main/helper.py
+      virtualfile = io.BytesIO()
+      wavfile.write(virtualfile, 44100, audio_data)
       # mixer config
       '''freq = 44100  # audio CD quality
       bitsize = -16  # unsigned 16 bit
@@ -312,7 +316,8 @@ if __name__ == '__main__':
       plot_piano_roll(pretty_midi.PrettyMIDI(midi_file), 55, 80)
       st.pyplot(pianoroll)'''
 
-      #with st.spinner(f"Playing the generated melody..."):
+      with st.spinner(f"Playing the generated melody..."):
+          st.audio(virtualfile)
           #st.audio(pretty_midi.PrettyMIDI(midi_file), 'audio/mid')
           #play_music(midi_file)
 
