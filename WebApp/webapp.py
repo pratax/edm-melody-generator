@@ -249,6 +249,7 @@ if __name__ == '__main__':
   from scipy.io import wavfile
   import pygame
   import fluidsynth
+  import numpy as np
 
   def play_music(midi_filename):
       '''Stream music_file in a blocking manner'''
