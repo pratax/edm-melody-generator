@@ -1,5 +1,4 @@
 libsndfile-dev
 libasound2-dev
-python-dev
 libjack-dev
 fluidsynth
