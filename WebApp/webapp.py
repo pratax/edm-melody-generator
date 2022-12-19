@@ -297,5 +297,5 @@ if __name__ == '__main__':
       st.write(':headphones: Click to play the generated melody: ')
       with st.spinner(':headphones: Playing the generated melody...'):
           st.audio(virtualfile)
-      st.download_button(label="Download WAV", data=midi_file, mime='audio/midi')
+      st.download_button(label="Download WAV", data=audio_data, mime='audio/wav')
 
