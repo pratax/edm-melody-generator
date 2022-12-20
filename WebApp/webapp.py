@@ -267,6 +267,8 @@ if __name__ == '__main__':
   for row in rows:
       st.write(f"{int(row.counter)}")
 
+  run_query(f'UPDATE "{sheet_url}" SET {54}')
+
   st.title('edm-melody-generator :notes: :dancer:')
   st.sidebar.title("Settings")
 
