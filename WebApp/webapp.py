@@ -290,8 +290,8 @@ if __name__ == '__main__':
   if midi_data:
     #midi_path = os.path.join(os.getcwd(), 'upload.mid')
     midi_path = str(midi_data.name)
-    midi_file = pretty_midi.PrettyMIDI(midi_data)
-    midi_file.write(midi_path)
+    '''midi_file = pretty_midi.PrettyMIDI(midi_data)
+    midi_file.write(midi_path)'''
   else:
     midi_path = None
 
