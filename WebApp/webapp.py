@@ -255,7 +255,16 @@ if __name__ == '__main__':
   st.title('edm-melody-generator :notes: :dancer:')
   st.sidebar.title("Settings")
 
+  instrument_to_soundfont = {
+      ':musical_keyboard:': 1,
+      ':saxophone:': 2,
+      ':guitar:': 3,
+      ':trumpet:': 4,
+      ':violin:': 5,
+  }
+
   st.write("Here's our first attempt at using data to create a table:")
+  instrument = st.radio("Instrument", (':musical_keyboard:', ':saxophone:', ':guitar:', ':trumpet:', ':violin:'), horizontal=True)
   temperature = st.sidebar.slider('Randomness', 0.1, 10.0, value=1.0)  # 👈 this is a widget
   qpm = st.sidebar.number_input("BPM", min_value=40, max_value=200, value=120, step=1, format="%i")
   bars = st.sidebar.select_slider("Bars", options=[1, 4, 8, 16], value=8)
