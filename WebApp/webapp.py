@@ -252,7 +252,7 @@ if __name__ == '__main__':
   import numpy as np
   import io
 
-  st.title('edm-melody-generator[link](https://github.com/pratax/edm-melody-generator) :notes: :dancer:')
+  st.title('edm-melody-generator :notes: :dancer:')
   st.sidebar.title("Settings")
 
   st.write("Here's our first attempt at using data to create a table:")
@@ -262,20 +262,26 @@ if __name__ == '__main__':
   length = bars*16
 
   df = pd.DataFrame({
-      'first column': ['C','D','E','F','G','A','B'],
+      'first column': ['C','C#','D','E'+u"\u266D",'E','F','F#','G','A'+u"\u266D",'A','B'+u"\u266D",'B'],
   })
 
   key_to_primer = {
       'C': "[60]",
+      'C#': "[61]",
       'D': "[62]",
+      'D'+u"\u266D": "[63]",
       'E': "[64]",
       'F': "[65]",
+      'F#': "[66]",
       'G': "[67]",
+      'A'+u"\u266D": "[68]",
       'A': "[69]",
+      'B'+u"\u266D": "[70]",
       'B': "[71]",
   }
 
-  option = st.sidebar.selectbox('Key: ', df['first column'])
+  #option = st.sidebar.selectbox('Key ', df['first column'])
+  option = st.sidebar.select_slider("Key", options=df['first column'], value='D')
 
   #midi_data = pretty_midi.PrettyMIDI(st.sidebar.file_uploader("Choose a MIDI file to start the melody with", type=['mid']))
   #midi_path = os.path.join(os.getcwd(), 'upload.mid')
