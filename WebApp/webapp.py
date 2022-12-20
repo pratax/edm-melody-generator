@@ -257,10 +257,10 @@ if __name__ == '__main__':
 
   instrument_to_soundfont = {
       '🎹': None,
-      '🎷': "TenorSax.SF2",
-      '🎸': "Guitar Acoustic (963KB).sf2",
-      '🎺': "JL_Trumpet.sf2",
-      '🎻': "23violinens_mrt.sf2",
+      '🎷': "soundfonts/TenorSax.SF2",
+      '🎸': "soundfonts/Guitar Acoustic (963KB).sf2",
+      '🎺': "soundfonts/JL_Trumpet.sf2",
+      '🎻': "soundfonts/23violinens_mrt.sf2",
   }
 
   st.write("Here's our first attempt at using data to create a table:")

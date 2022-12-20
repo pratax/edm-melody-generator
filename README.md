@@ -48,8 +48,8 @@ So far, five training runs have been performed. All the details are shown in the
 As we can see from the table above, a higher learning rate is to be preferred to a lower one since it yields higher accuracy values and lower perplexity scores. As for the model size, having a bigger model size is preferred since it yields better results, but if we do not have enough computing power it is necessary to reduce the size of our model. Regarding batch size, considering the same learning rate and model size, a bigger batch size yields slightly better results. The fifth run is the one that performed best both in terms of accuracy and perplexity and the figures below (adapted from TensorBoard) show the curves of the two metrics against the training step:
 
 
-![figure](accuracy.png)
-![figure](perplexity.png)
+![figure](images/accuracy.png)
+![figure](images/perplexity.png)
 
 As a final consideration, it is worth noting that all of the runs have been performed for 20.000 global steps, and changing the hyperparameters such as model size didn't affect the training time that remained pretty much constant within all five runs.
 

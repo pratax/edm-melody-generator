@@ -3,8 +3,14 @@
   <component name="ChangeListManager">
     <list default="true" id="fb935668-e65d-47ec-8875-2cedb24fff88" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/23violinens_mrt.sf2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Guitar Acoustic (963KB).sf2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/JL_Trumpet.sf2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TenorSax.SF2" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/WebApp/webapp.py" beforeDir="false" afterPath="$PROJECT_DIR$/WebApp/webapp.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/run5.mag" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/accuracy.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/perplexity.png" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
