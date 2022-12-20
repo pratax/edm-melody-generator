@@ -251,23 +251,6 @@ if __name__ == '__main__':
   import fluidsynth
   import numpy as np
   import io
-  from gsheetsdb import connect
-
-  conn = connect()
-
-  def run_query(query):
-      rows = conn.execute(query, headers=1)
-      rows = rows.fetchall()
-      return rows
-
-
-  sheet_url = st.secrets["public_gsheets_url"]
-  rows = run_query(f'SELECT * FROM "{sheet_url}"')
-
-  for row in rows:
-      st.write(f"{int(row.counter)}")
-
-  run_query(f'UPDATE "{sheet_url}" SET counter = {54}')
 
   st.title('edm-melody-generator :notes: :dancer:')
   st.sidebar.title("Settings")
