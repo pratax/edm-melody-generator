@@ -293,7 +293,7 @@ if __name__ == '__main__':
 
       #st.button("generate", key=None, help=None, on_click=console_entry_point(), args=None, kwargs=None, type="secondary", disabled=False)
       with st.spinner(':construction: Generating melody...'):
-        midi_file = console_entry_point(primer_melody="["+str(pitch)+"]", temperature=temperature, length=length, qpm=qpm, primer_midi=midi_data)
+        midi_file = console_entry_point(primer_melody="["+str(pitch)+"]", temperature=temperature, length=length, qpm=qpm, primer_midi=midi_path)
 
       with st.spinner(':chains: Converting it to a WAV file...'):
           midi_data = pretty_midi.PrettyMIDI(midi_file)
