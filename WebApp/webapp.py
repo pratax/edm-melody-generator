@@ -265,7 +265,7 @@ if __name__ == '__main__':
   rows = run_query(f'SELECT * FROM "{sheet_url}"')
 
   for row in rows:
-      st.write(f"{row.counter}")
+      st.write(f"{int(row.counter)}")
 
   st.title('edm-melody-generator :notes: :dancer:')
   st.sidebar.title("Settings")
