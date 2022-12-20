@@ -291,6 +291,8 @@ if __name__ == '__main__':
     midi_path = os.path.join(os.getcwd(), 'upload.mid')
     midi_file = pretty_midi.PrettyMIDI(midi_data)
     midi_file.write(midi_path)
+  else:
+    midi_path = None
 
   if st.button('Generate Melody'):
 
