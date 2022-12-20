@@ -1,6 +1,8 @@
 # EDM Melody Generator
 This repository contains the work for the lecture Applied Deep Learning (194.077) for WS22.
 
+[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://pratax-edm-melody-generator-webappwebapp-utvzjr.streamlit.app/)
+
 ## Project Topic
 The topic of this project is to use Recurrent Neural Networks in order to generate Electronic Dance Music melodies.
 
