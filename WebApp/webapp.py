@@ -288,7 +288,8 @@ if __name__ == '__main__':
   midi_data = st.sidebar.file_uploader("Choose a MIDI file to start the melody with", type=['mid', 'midi'])
   st.write(midi_data)
   if midi_data:
-    midi_path = os.path.join(os.getcwd(), 'upload.mid')
+    #midi_path = os.path.join(os.getcwd(), 'upload.mid')
+    midi_path = str(midi_data.filename)
     midi_file = pretty_midi.PrettyMIDI(midi_data)
     midi_file.write(midi_path)
   else:
