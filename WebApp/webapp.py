@@ -285,24 +285,11 @@ if __name__ == '__main__':
   octave = st.sidebar.number_input("Octave", min_value=-2, max_value=2, value=0, step=1, format="%i")
   pitch = key_to_primer[option] + octave*12
 
-  midi_data = st.sidebar.file_uploader("Choose a MIDI file to start the melody with", type=['mid', 'midi'])
-  st.write(midi_data)
-  if midi_data:
-    @st.experimental_memo
-    def uploaded_file():
-        return midi_data
-    #midi_path = os.path.join(os.getcwd(), 'upload.mid')
-    midi_path = str(uploaded_file().name)
-    '''midi_file = pretty_midi.PrettyMIDI(midi_data)
-    midi_file.write(midi_path)'''
-  else:
-    midi_path = None
-
   if st.button('Generate Melody'):
 
       #st.button("generate", key=None, help=None, on_click=console_entry_point(), args=None, kwargs=None, type="secondary", disabled=False)
       with st.spinner(':construction: Generating melody...'):
-        midi_file = console_entry_point(primer_melody="["+str(pitch)+"]", temperature=temperature, length=length, qpm=qpm, primer_midi=midi_path)
+        midi_file = console_entry_point(primer_melody="["+str(pitch)+"]", temperature=temperature, length=length, qpm=qpm)
 
       with st.spinner(':chains: Converting it to a WAV file...'):
           midi_data = pretty_midi.PrettyMIDI(midi_file)
