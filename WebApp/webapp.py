@@ -266,22 +266,24 @@ if __name__ == '__main__':
   })
 
   key_to_primer = {
-      'C': "[60]",
-      'C#': "[61]",
-      'D': "[62]",
-      'E'+u"\u266D": "[63]",
-      'E': "[64]",
-      'F': "[65]",
-      'F#': "[66]",
-      'G': "[67]",
-      'A'+u"\u266D": "[68]",
-      'A': "[69]",
-      'B'+u"\u266D": "[70]",
-      'B': "[71]",
+      'C': 60,
+      'C#': 61,
+      'D': 62,
+      'E'+u"\u266D": 63,
+      'E': 64,
+      'F': 65,
+      'F#': 66,
+      'G': 67,
+      'A'+u"\u266D": 68,
+      'A': 69,
+      'B'+u"\u266D": 70,
+      'B': 71,
   }
 
   #option = st.sidebar.selectbox('Key ', df['first column'])
-  option = st.sidebar.select_slider("Key", options=df['first column'], value='D')
+  option = st.sidebar.select_slider("Key", options=df['first column'], value='C')
+  octave = st.sidebar.number_input("Octave", min_value=-2, max_value=2, value=0, step=1, format="%i")
+  pitch = key_to_primer[option] + octave*12
 
   #midi_data = pretty_midi.PrettyMIDI(st.sidebar.file_uploader("Choose a MIDI file to start the melody with", type=['mid']))
   #midi_path = os.path.join(os.getcwd(), 'upload.mid')
@@ -291,7 +293,7 @@ if __name__ == '__main__':
 
       #st.button("generate", key=None, help=None, on_click=console_entry_point(), args=None, kwargs=None, type="secondary", disabled=False)
       with st.spinner(':construction: Generating melody...'):
-        midi_file = console_entry_point(primer_melody=key_to_primer[option], temperature=temperature, length=length, qpm=qpm, primer_midi=None)
+        midi_file = console_entry_point(primer_melody="["+str(pitch)+"]", temperature=temperature, length=length, qpm=qpm, primer_midi=None)
 
       with st.spinner(':chains: Converting it to a WAV file...'):
           midi_data = pretty_midi.PrettyMIDI(midi_file)
