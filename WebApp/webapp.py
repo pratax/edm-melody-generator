@@ -257,7 +257,7 @@ if __name__ == '__main__':
 
   instrument_to_soundfont = {
       '🎹': None,
-      '🎷': 2,
+      '🎷': "TenorSax.SF2",
       '🎸': 3,
       '🎺': "JL_Trumpet.sf2",
       '🎻': "23violinens_mrt.sf2",
