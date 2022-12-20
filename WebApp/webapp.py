@@ -135,8 +135,8 @@ def run_with_flags(generator, primer_melody, temperature, length, qpm, primer_mi
   FLAGS.output_dir = os.path.expanduser(FLAGS.output_dir)
 
   #primer_midi = None
-  '''if primer_midi:
-    primer_midi = os.path.expanduser(primer_midi)'''
+  if primer_midi:
+    primer_midi = os.path.expanduser(primer_midi)
 
   if not tf.gfile.Exists(FLAGS.output_dir):
     tf.gfile.MakeDirs(FLAGS.output_dir)
@@ -299,6 +299,8 @@ if __name__ == '__main__':
           wavfile.write(virtualfile, 44100, audio_data)
 
       st.balloons()
+
+      #note_seq = midi_file_to_note_sequence(midi_file)
 
       st.write(':headphones: Click to play the generated melody: ')
       with st.spinner(':headphones: Playing the generated melody...'):
