@@ -256,16 +256,15 @@ if __name__ == '__main__':
   st.sidebar.title("Settings")
 
   instrument_to_soundfont = {
-      '🎹': 1,
+      '🎹': None,
       '🎷': 2,
       '🎸': 3,
-      '🎺': 4,
-      '🎻': 5,
+      '🎺': "trompeta_de_adrian_rios_extreme_2.sf2",
+      '🎻': "23violinens_mrt.sf2",
   }
 
   st.write("Here's our first attempt at using data to create a table:")
   instrument = st.radio("Instrument", ('🎹', '🎷', '🎸', '🎺', '🎻'), horizontal=True)
-  st.write(instrument_to_soundfont[instrument])
   temperature = st.sidebar.slider('Randomness', 0.1, 10.0, value=1.0)  # 👈 this is a widget
   qpm = st.sidebar.number_input("BPM", min_value=40, max_value=200, value=120, step=1, format="%i")
   bars = st.sidebar.select_slider("Bars", options=[1, 4, 8, 16], value=8)
