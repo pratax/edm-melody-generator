@@ -255,6 +255,10 @@ if __name__ == '__main__':
   if 'count' not in st.session_state:
       st.session_state.count = 0
 
+
+  def increment_counter():
+      st.session_state.count += 1
+
   st.title('edm-melody-generator :notes: :dancer:')
   st.sidebar.title("Settings")
 
@@ -305,14 +309,12 @@ if __name__ == '__main__':
   octave = st.sidebar.number_input("Octave", min_value=-2, max_value=2, value=0, step=1, format="%i")
   pitch = key_to_primer[option] + octave*12
 
-  if st.button('Generate Melody'):
+  if st.button('Generate Melody', on_click=increment_counter):
 
       #st.button("generate", key=None, help=None, on_click=console_entry_point(), args=None, kwargs=None, type="secondary", disabled=False)
       with st.spinner(':construction: Generating melody...'):
         midi_file = console_entry_point(primer_melody="["+str(pitch)+"]", temperature=temperature, length=length, qpm=qpm)
 
-      st.session_state.count += 1
-      
       with st.spinner(':chains: Converting it to a WAV file...'):
           midi_data = pretty_midi.PrettyMIDI(midi_file)
           audio_data = midi_data.fluidsynth(sf2_path=instrument_to_soundfont[instrument])
