@@ -252,6 +252,9 @@ if __name__ == '__main__':
   import numpy as np
   import io
 
+  if 'count' not in st.session_state:
+      st.session_state.count = 0
+
   st.title('edm-melody-generator :notes: :dancer:')
   st.sidebar.title("Settings")
 
@@ -263,7 +266,15 @@ if __name__ == '__main__':
       '🎻': "soundfonts/23violinens_mrt.sf2",
   }
 
+  if st.session_state.count == 0:
+      emoji = '😞'
+  elif 0 < st.session_state.count < 5:
+      emoji = '🙂'
+  else:
+      emoji = '😆'
+
   st.write("Here's our first attempt at using data to create a table:")
+  st.write(f"You generated {st.session_state.count} melodies with this amazing app {emoji}")
   instrument = st.radio("Instrument", ('🎹', '🎷', '🎸', '🎺', '🎻'), horizontal=True)
   temperature = st.sidebar.slider('Randomness', 0.1, 10.0, value=1.0)  # 👈 this is a widget
   qpm = st.sidebar.number_input("BPM", min_value=40, max_value=200, value=120, step=1, format="%i")
@@ -300,6 +311,8 @@ if __name__ == '__main__':
       with st.spinner(':construction: Generating melody...'):
         midi_file = console_entry_point(primer_melody="["+str(pitch)+"]", temperature=temperature, length=length, qpm=qpm)
 
+      st.session_state.count += 1
+      
       with st.spinner(':chains: Converting it to a WAV file...'):
           midi_data = pretty_midi.PrettyMIDI(midi_file)
           audio_data = midi_data.fluidsynth(sf2_path=instrument_to_soundfont[instrument])
