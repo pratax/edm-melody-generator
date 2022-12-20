@@ -259,7 +259,7 @@ if __name__ == '__main__':
       '🎹': None,
       '🎷': 2,
       '🎸': 3,
-      '🎺': "trompeta_de_adrian_rios_extreme_2.sf2",
+      '🎺': "JL_Trumpet.sf2",
       '🎻': "23violinens_mrt.sf2",
   }
 
