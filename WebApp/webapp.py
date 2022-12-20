@@ -253,6 +253,7 @@ if __name__ == '__main__':
   import io
 
   st.title('edm-melody-generator :notes: :dancer:')
+  st.sidebar.markdown('<h5>Made in &nbsp<object data="https://static.streamlit.io/badges/streamlit_badge_black_white.svg"> </object>&nbsp by <a href="https://github.com/pratax/edm-melody-generator">@pratax</a></h5>', unsafe_allow_html=True)
   st.sidebar.title("Settings")
 
   instrument_to_soundfont = {
