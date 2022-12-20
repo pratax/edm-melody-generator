@@ -285,9 +285,9 @@ if __name__ == '__main__':
   octave = st.sidebar.number_input("Octave", min_value=-2, max_value=2, value=0, step=1, format="%i")
   pitch = key_to_primer[option] + octave*12
 
-  midi_data = pretty_midi.PrettyMIDI(st.sidebar.file_uploader("Choose a MIDI file to start the melody with", type=['mid', 'midi']))
+  midi_data = st.sidebar.file_uploader("Choose a MIDI file to start the melody with", type=['mid', 'midi'])
   midi_path = os.path.join(os.getcwd(), 'upload.mid')
-  midi_data
+  st.write(midi_data)
   midi_data.write(midi_path)
 
   if st.button('Generate Melody'):
