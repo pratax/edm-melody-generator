@@ -277,7 +277,6 @@ if __name__ == '__main__':
   else:
       emoji = '😆'
 
-  st.write("Here's our first attempt at using data to create a table:")
   st.write(f"You generated {st.session_state.count} melodies with this amazing app {emoji}")
   instrument = st.radio("Instrument", ('🎹', '🎷', '🎸', '🎺', '🎻'), horizontal=True)
   temperature = st.sidebar.slider('Randomness', 0.1, 10.0, value=1.0)  # 👈 this is a widget

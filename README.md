@@ -62,8 +62,8 @@ As a final consideration, it is worth noting that all of the runs have been perf
 | Dataset Collection                        | 40h  |  25h |
 | Network Building                          | 5h   |  5h  |
 | Network Training                          | 20h  |  8h  |
-| Application Development                   | 15h  |      |
-| Final Written Report                      | 10h  |      |
+| Application Development                   | 15h  |  28h |
+| Final Written Report                      | 10h  |  2.5h|
 | Final Presentation                        | 5h   |      |
 
 ## Installation
