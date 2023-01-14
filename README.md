@@ -64,7 +64,7 @@ As a final consideration, it is worth noting that all of the runs have been perf
 | Network Training                          | 20h  |  8h  |
 | Application Development                   | 15h  |  28h |
 | Final Written Report                      | 10h  |  2.5h|
-| Final Presentation                        | 5h   |      |
+| Final Presentation                        | 5h   |  2h  |
 
 ## Installation
 This project was created and tested with python version 3.7. In order to install it, first clone this repository with the following command:
