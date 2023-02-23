@@ -80,7 +80,7 @@ and finally, to install all the required packages, run the following command:
 pip install -r requirements.txt
 ```
 
-## Usage
+## Usage MelodyRNN
 ### Train 
 In order to train MelodyRNN on this custom edm dataset, first we need to convert the MIDI files to NoteSequences. In order to do so, from the main directory of this project, run the following command:
 ```
@@ -133,6 +133,40 @@ where:
  - ```--num_steps``` specifies how long each melody will be in 16th steps (128 steps = 8 bars)
  - ```--hparams``` specifies the hyperparameters of the model
  - ```--primer_melody``` specifies the starting note of the generated melodies (60 represents the note C4 and increasing/decreasing by 1 increases/decreases the starting note by 1 semitone, e.g. 62 corresponds to the note D4)
+
+## Usage MusicVAE 
+### Train 
+In order to train MelodyRNN on this custom edm dataset, first we need to convert the MIDI files to NoteSequences. In order to do so, from the main directory of this project, run the following command (note: use magenta4 environment):
+```
+python magenta/magenta/scripts/convert_dir_to_note_sequences.py --input_dir="Dataset" --output_file="tmp/notesequences.tfrecord" --recursive 
+```
+where:
+ - ```--input_dir``` specifies the relative or absolute path to the folder containing the MIDI files
+ - ```--output_file``` specifies the file to be created and written with the NoteSequences
+
+now we are ready to train our model. To do so, from the main directory run this command:
+```
+python magenta/magenta/models/music_vae/music_vae_train.py --config=cat-mel_2bar_small --run_dir=tmp/music_vae --mode=train --examples_path=tmp/notesequences.tfrecord --hparams=batch_size=32,learning_rate=0.0005 --num_steps=20000
+```
+where:
+ - ```--config``` specifies the type of model to train between: cat-mel_2bar_small, 
+ - ```--run_dir``` specifies the path where to store training logs and checkpoints 
+ - ```--examples_path``` specifies the path to the training ready dataset created in the previous step
+ - ```--hparams``` specifies the hyperparameters of the model
+ - ```--num_steps``` specifies the number of training steps to perform before ending the training phase
+
+### Test
+Once training is done, it is possible to test the model by generating a certain amount of melodies. To generate melodies run the following command:
+```
+python magenta/magenta/models/music_vae/music_vae_generate.py --run_dir=tmp/music_vae --output_dir=tmp/music_vae/generated --config=cat-mel_2bar_small --mode=sample --num_outputs=5 --temperature=0.5
+```
+where:
+ - ```--config``` specifies the type of model to train between: cat-mel_2bar_small
+ - ```--run_dir``` specifies the directory where the trained model was saved
+ - ```--output_dir``` specifies the directory where to store the generated MIDI melodies
+ - ```--num_outputs``` specifies the number of melodies that will be generated
+ - ```--mode``` specifies the type of operation: sample, interpolate
+ - ```--temperature``` specifies the randomness of the generated melodies
  
 ## References
 For the initial topic research the following references have been used:
